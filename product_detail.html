@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Detail</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo">ShopLogo</div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="catalogue.html">Catalogue</a>
+                <a href="cart.html">Cart</a>
+                <a href="blog.html">Blog</a>
+                <a href="login.html">Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="product-detail">
+            <img id="product-image" alt="Product Image">
+            <div class="product-info">
+                <h2 id="product-name">Product Name</h2>
+                <p id="product-description">Description of the product...</p>
+
+                <!-- Add to Cart Button -->
+                <button id="add-to-cart-button">Add to Cart</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 ShopLogo. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Define the products data
+        const products = {
+            '1': {
+                name: 'Product 1',
+                description: 'Description of Product 1...',
+                image: 'images/product1.jpg',
+            },
+            '2': {
+                name: 'Product 2',
+                description: 'Description of Product 2...',
+                image: 'images/product2.jpg',
+            },
+            // Add more products here if needed
+        };
+
+        // Function to add item to the cart
+        function addItemToCart(product) {
+            let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+            // Check if the product already exists in the cart
+            const existingProduct = cartItems.find(cartItem => cartItem.id === product.id);
+
+            if (existingProduct) {
+                // If it exists, increase the quantity
+                existingProduct.quantity += 1;
+            } else {
+                // If not, add the new product to the cart
+                cartItems.push(product);
+            }
+
+            // Save the updated cart back to localStorage
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+
+            // Show a confirmation or alert
+            alert(`${product.name} added to cart`);
+        }
+
+        // Get the product ID from the URL query string
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('product');
+
+        // Update the product details based on the productId
+        if (products[productId]) {
+            document.getElementById('product-name').textContent = products[productId].name;
+            document.getElementById('product-description').textContent = products[productId].description;
+            document.getElementById('product-image').src = products[productId].image;
+
+            // Attach the add to cart functionality for this product
+            document.getElementById('add-to-cart-button').addEventListener('click', function() {
+                addItemToCart({
+                    id: productId,
+                    name: products[productId].name,
+                    description: products[productId].description,
+                    quantity: 1,
+                });
+            });
+        } else {
+            document.getElementById('product-name').textContent = 'Product not found';
+            document.getElementById('product-description').textContent = 'Sorry, this product is unavailable.';
+            document.getElementById('product-image').src = 'images/product-not-found.jpg'; // Optional fallback image
+        }
+    </script>
+</body>
+</html>

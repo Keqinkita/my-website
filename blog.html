@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Product Feedback</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+        }
+
+        header .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        header nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+        }
+
+        header nav a:hover {
+            text-decoration: underline;
+        }
+
+        .blog-container {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-header {
+            font-size: 32px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .blog-form label {
+            font-size: 16px;
+            margin-bottom: 10px;
+            display: block;
+            font-weight: bold;
+        }
+
+        .blog-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            height: 150px;
+        }
+
+        .blog-form input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            padding: 12px 25px;
+            border-radius: 4px;
+            width: 100%;
+        }
+
+        .blog-form input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .comments-section {
+            margin-top: 40px;
+        }
+
+        .comment {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .comment h3 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .comment p {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <div class="logo">ShopLogo</div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="catalogue.html">Catalogue</a>
+                <a href="cart.html">Cart</a>
+                <a href="blog.html">Blog</a>
+                <a href="login.html">Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="blog-container">
+            <div class="blog-header">
+                <h2>Product Feedback</h2>
+            </div>
+
+            <div class="blog-form">
+                <h3>Leave Your Feedback</h3>
+                <form id="comment-form">
+                    <label for="name">Your Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+                    <label for="comment">Your Feedback:</label>
+                    <textarea id="comment" name="comment" placeholder="Write your feedback here" required></textarea>
+
+                    <input type="submit" value="Post Comment">
+                </form>
+            </div>
+
+            <div class="comments-section" id="comments-section">
+                <!-- Comments will appear here -->
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 ShopLogo. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Function to handle the comment submission
+        document.getElementById('comment-form').addEventListener('submit', function (e) {
+            e.preventDefault(); // Prevent actual form submission
+
+            // Get the values from the input fields
+            const name = document.getElementById('name').value;
+            const comment = document.getElementById('comment').value;
+
+            // Create a new comment element
+            const commentElement = document.createElement('div');
+            commentElement.classList.add('comment');
+
+            // Add name and comment to the new element
+            commentElement.innerHTML = `
+                <h3>${name}</h3>
+                <p>${comment}</p>
+            `;
+
+            // Add the comment to the comments section
+            document.getElementById('comments-section').appendChild(commentElement);
+
+            // Clear the form inputs
+            document.getElementById('comment-form').reset();
+        });
+    </script>
+</body>
+</html>

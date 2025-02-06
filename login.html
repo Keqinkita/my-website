@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+        }
+
+        header .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        header nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+        }
+
+        header nav a:hover {
+            text-decoration: underline;
+        }
+
+        .login-container {
+            padding: 40px 20px;
+            max-width: 400px;
+            margin: 50px auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-header {
+            font-size: 32px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .login-form label {
+            font-size: 16px;
+            margin-bottom: 10px;
+            display: block;
+            font-weight: bold;
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .login-form input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            padding: 12px 25px;
+            border-radius: 4px;
+            width: 100%;
+        }
+
+        .login-form input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <div class="logo">ShopLogo</div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="catalogue.html">Catalogue</a>
+                <a href="cart.html">Cart</a>
+                <a href="login.html">Login</a> <!-- This will be visible until the user logs in -->
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="login-container">
+            <div class="login-header">
+                <h2>Login</h2>
+            </div>
+
+            <form class="login-form" id="login-form">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+                <input type="submit" value="Login">
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 ShopLogo. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Simulate login validation and set login status
+        document.getElementById('login-form').addEventListener('submit', function (e) {
+            e.preventDefault(); // Prevent actual form submission
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            // For simplicity, check if username and password match a dummy value
+            if (username === 'adishtee' && password === 'adishtee') {
+                // Set login status in localStorage
+                localStorage.setItem('loggedIn', 'true');
+                // Redirect to the Home page or any other page after login
+                window.location.href = 'index.html'; // or any page you want
+            } else {
+                alert('Invalid username or password. Please try again.');
+            }
+        });
+    </script>
+
+</body>
+</html>
